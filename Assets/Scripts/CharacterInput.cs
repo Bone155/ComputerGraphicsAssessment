@@ -18,8 +18,8 @@ public class CharacterInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("Forward", Input.GetAxis("Vertical"));
-        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        animator.SetFloat("Forward", Input.GetAxis("Vertical"), 0.1f, Time.deltaTime);
+        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"), 0.1f, Time.deltaTime);
         animator.SetBool("onGround", onGround);
 
         if (Input.GetKey(KeyCode.Space) && onGround)
@@ -38,13 +38,16 @@ public class CharacterInput : MonoBehaviour
         {
             animator.SetFloat("Jump", rb.velocity.y);
         }
+        else
+        {
+            animator.applyRootMotion = true;
+        }
 
     }
 
     void OnCollisionEnter(Collision collision)
     {
         onGround = true;
-        animator.applyRootMotion = true;
     }
 
     void OnCollisionStay(Collision collision)
