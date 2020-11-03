@@ -68,6 +68,7 @@
     <Compile Include="Assets\Sample\Standard Assets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\Scripts\ApplyShader.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />
+    <Compile Include="Assets\Scripts\BombArea.cs" />
     <Compile Include="Assets\Scripts\CharacterInput.cs" />
     <None Include="Assets\Sample\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">

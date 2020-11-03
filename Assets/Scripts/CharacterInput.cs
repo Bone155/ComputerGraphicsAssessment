@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +7,10 @@ public class CharacterInput : MonoBehaviour
 {
     public Rigidbody rb;
     public Animator animator;
-    public float gravityMulti = 2.0f;
-    public float jumpAmount = 5.0f;
+    public float gravityMulti = 2f;
+    public float jumpAmount = 5f;
+    public float rotateSpeed = 2f;
+    public float animeSpeed = 1.5f;
     bool onGround = true;
     // Start is called before the first frame update
     void Start()
@@ -16,11 +19,15 @@ public class CharacterInput : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        animator.SetFloat("Forward", Input.GetAxis("Vertical"), 0.1f, Time.deltaTime);
-        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"), 0.1f, Time.deltaTime);
+        float forward = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+
+        animator.SetFloat("Forward", forward);
+        animator.SetFloat("Horizontal", horizontal);
         animator.SetBool("onGround", onGround);
+        animator.speed = animeSpeed;
 
         if (Input.GetKey(KeyCode.Space) && onGround)
         {
@@ -43,6 +50,7 @@ public class CharacterInput : MonoBehaviour
             animator.applyRootMotion = true;
         }
 
+        transform.Rotate(0, horizontal * rotateSpeed, 0);
     }
 
     void OnCollisionEnter(Collision collision)

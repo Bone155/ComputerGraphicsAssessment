@@ -7,7 +7,7 @@ public class ApplyShader : MonoBehaviour
 {
     public Button button;
     public Renderer renderer;
-    public float offsetY = 0;
+    public float offsetY = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,12 +30,14 @@ public class ApplyShader : MonoBehaviour
 
     bool objectInFront()
     {
+        bool isInFront = false;
         RaycastHit hit;
         if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z), transform.TransformDirection(Vector3.forward), out hit, 1.5f))
         {
-            return true;
+            if (hit.collider.gameObject.CompareTag("ShaderObject"))
+                isInFront = true;
         }
-        return false;
+        return isInFront;
     }
 
     public void changeMaterials()
