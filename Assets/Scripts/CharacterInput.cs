@@ -67,4 +67,5 @@ public class CharacterInput : MonoBehaviour
     {
         onGround = false;
     }
+
 }
